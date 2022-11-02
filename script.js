@@ -13,7 +13,6 @@ function getComputerChoice (){
 
 function playRound (playerSelection, computerSelection) {
     let winner = 0;
-    getComputerChoice();
     if(playerSelection == 'ROCK') {
         if(computerSelection == 'ROCK'){
             winner=0;
@@ -59,28 +58,17 @@ function playRound (playerSelection, computerSelection) {
     return winner;
 }
 
-function game () {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        //prompt the use for input
-        let winner = playRound(prompt(), getComputerChoice()); 
-        if(winner==1){
-            playerScore++;
-        }
-        else if (winner==2){
-            computerScore++;
-        }
-        else{
-            i--;
-        }
-        console.log(playerScore)
-        console.log(computerScore)
-        if(playerScore == 3){
-            return ('You won 3 rounds - you win the game!')
-        }
-        else if (computerScore == 3){
-            return ('The computer won 3 rounds - you lost the game.')
-        }
-    }
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+
+
+rock.addEventListener('click', () => handleClick('ROCK'))
+paper.addEventListener('click', () => handleClick('PAPER'))
+scissors.addEventListener('click', () => handleClick('SCISSORS'))
+
+function handleClick(playerSelection) {
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    
 }
